@@ -57,7 +57,7 @@ class Solution:
         while left < right:
             mid = left + (right - left) // 2
             # This is slope based intuition. If element
-            # at `mid` is greater than that at `mid  1`, we know
+            # at `mid` is greater than that at `mid + 1`, we know
             # it's a decreasing slope, so we know there
             # will certainly be a peak in the left half.
             #
