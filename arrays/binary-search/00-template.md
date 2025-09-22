@@ -73,18 +73,3 @@ def upper_bound(arr: list, condition) -> int:
 **Behavior:** When mid is a potential answer, you discard it (left = mid + 1) to aggressively search for a better (later) one.
 
 **Result:** This pushes left just past the boundary of valid answers. It ends up pointing to the first element that fails the condition. Therefore, you must return left - 1 to get the last valid element.
-
-## Common Mistake Patterns
-
-### ❌ Wrong Pattern
-
-```python
-while left <= right:  # Will cause infinite loop!
-    mid = (left + right) // 2
-    if condition:
-        right = mid      # Problem: when left==right==mid
-    else:
-        left = mid + 1
-```
-
-**Problem**: When `left == right == mid`, setting `right = mid` doesn't change anything → infinite loop
