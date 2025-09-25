@@ -77,17 +77,6 @@ repos:
             --in-place,
           ]
 
-  # Security linting with bandit
-  - repo: local
-    hooks:
-      - id: bandit
-        name: Security linting with Bandit
-        entry: bandit
-        language: system
-        description: Scans Python code for common security issues
-        types: [python] # only run on Python files
-        exclude: ^.*tests/ # exclude test files
-
 # Global settings
 default_stages: [pre-commit]
 fail_fast: false

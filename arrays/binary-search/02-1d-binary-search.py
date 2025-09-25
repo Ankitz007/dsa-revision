@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def lowerBound(self, arr, target):
         """

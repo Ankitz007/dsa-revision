@@ -1,4 +1,5 @@
 import math
+from typing import List
 
 
 class Solution:
@@ -383,15 +384,15 @@ class Solution:
         """
 
         def isPossibleDistance(distance):
-            stations = 0
+            station_count = 0
             for i in range(1, len(stations)):
                 # Use pen and paper with some examples, this
                 # will become quite clear.
                 gap = stations[i] - stations[i - 1]
-                stations += (math.ceil(gap) / distance) - 1
-                if stations > k:
+                station_count += (math.ceil(gap) / distance) - 1
+                if station_count > k:
                     return False
-            return stations <= k
+            return station_count <= k
 
         left, right = 0, stations[-1] - stations[0] + 1
         # NOTE: Since the precision required in the answer is 2,

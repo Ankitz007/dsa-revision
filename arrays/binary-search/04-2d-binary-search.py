@@ -1,3 +1,6 @@
+from typing import List
+
+
 class Solution:
     def findMaxRow(self, mat, n):
         """
@@ -32,7 +35,7 @@ class Solution:
                 result = [i, num_ones]
         return result
 
-    def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+    def search2DMatrix(self, matrix: List[List[int]], target: int) -> bool:
         """
         Search a 2D Matrix
         Link: https://leetcode.com/problems/search-a-2d-matrix/description/
@@ -119,7 +122,7 @@ class Solution:
                     index = i
             return element, index
 
-        rows, cols = len(mat), len(mat[0])
+        rows, _ = len(mat), len(mat[0])
         left, right = 0, rows - 1
 
         while left <= right:
