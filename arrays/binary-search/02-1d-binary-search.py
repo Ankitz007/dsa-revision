@@ -11,16 +11,16 @@ class Solution:
         sorted array where the element is greater than or equal to the given
         number.
         """
-        low, high = 0, len(arr)
-        while low < high:
-            mid = low + (high - low) // 2
+        left, right = 0, len(arr)
+        while left < right:
+            mid = left + (right - left) // 2
             # Basically, if the element is greater than or
             # equal to target, it CAN be the answer.
             if arr[mid] >= target:
-                high = mid
+                right = mid
             else:
-                low = mid + 1
-        return low
+                left = mid + 1
+        return left
 
     def upperBound(self, arr, target):
         """
