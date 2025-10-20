@@ -49,6 +49,8 @@ class Solution:
         result, stack = [-1] * n, []
         # We traverse the input in reverse order
         for i in range(n - 1, -1, -1):
+            # Empty the stack top till current element
+            # is lesser than stack top.
             while stack and arr[i] >= stack[-1]:
                 stack.pop()
             if stack:
@@ -56,7 +58,8 @@ class Solution:
             stack.append(arr[i])
         return result
 
-    def leftSmaller(self, arr):
+    # Method 1
+    def leftSmallerM1(self, arr):
         """
         Smaller on left
         Link: https://www.geeksforgeeks.org/problems/smallest-number-on-left3403/1
@@ -77,6 +80,20 @@ class Solution:
             stack.append(i)
         return result
 
+    # Method 2
+    def leftSmallerM2(self, arr):
+        n = len(arr)
+        stack, result = [], [-1] * n
+
+        for i in range(n):
+            while stack and arr[i] <= stack[-1]:
+                stack.pop()
+            if stack:
+                result[i] = stack[-1]
+            stack.append(arr[i])
+
+        return result
+
     def nextGreaterCircular(self, arr):
         """
         Next Greater Element in Circular Array
@@ -95,6 +112,8 @@ class Solution:
         """
         n = len(arr)
         result, stack = [-1] * n, []
+        # Basically, we iterate through the input twice
+        # to take care of the cyclicity
         for i in range(2 * n):
             while stack and arr[stack[-1]] < arr[i % n]:
                 result[stack.pop()] = arr[i % n]
@@ -104,7 +123,7 @@ class Solution:
                 stack.append(i % n)
         return result
 
-    def calculateSpan(self, arr):
+    def calculateSpanM1(self, arr):
         """
         Stock Span Problem
         Link: https://www.geeksforgeeks.org/problems/stock-span-problem-1587115621/1
@@ -130,4 +149,28 @@ class Solution:
         while stack:
             idx = stack.pop()
             result[idx] = idx + 1
+        return result
+
+    def calculateSpanM2(self, arr):
+        n = len(arr)
+        result = []
+        stack = []  # Monotonic decreasing stack (stores indices)
+
+        for i in range(n):
+            # Remove all previous days with price <= today's price
+            # These days are now "covered" by today
+            while stack and arr[i] >= arr[stack[-1]]:
+                stack.pop()
+
+            # Span calculation:
+            # If stack is empty: all previous days qualify → span = i + 1
+            # Otherwise: days since last higher price → span = i - stack[-1]
+            if stack:
+                result[i] = i - stack[-1]
+            else:
+                result[i] = i + 1
+
+            # Push current day to stack
+            stack.append(i)
+
         return result
